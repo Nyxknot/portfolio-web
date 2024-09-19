@@ -3,3 +3,35 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-color: #1E1E1E;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollport {
+    @media screen and (max-width: 768px) {
+        -webkit-mask-image: linear-gradient(to right, #0000, #000, #000, #000, #000,#000, #000,#000, #000, #0000);
+        mask-image: linear-gradient(to right, #0000, #000, #000, #000, #000,#000, #000,#000, #000, #0000);
+    }
+}
+
+.remove-scrollbar {
+    overflow-x: auto;   
+    overflow-y: hidden; 
+    -webkit-overflow-scrolling: touch;
+}
+
+.remove-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.remove-scrollbar {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+}
