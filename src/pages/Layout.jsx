@@ -15,7 +15,7 @@ function Layout() {
 
     return (
         <>
-            <div className="scrollport lg:mx-auto lg:grid grid-cols-5 font-ropasans text-custom-text text-base max-w-screen-xl text-justify py-32 grow">
+            <div className="lg:mx-auto lg:grid grid-cols-5 font-ropasans text-custom-text text-base max-w-screen-xl text-justify py-32 grow">
                 <div className="lg:py-0 py-7 px-10 w-full">
                     {pathnames.length > 0 && (
                         <div>
