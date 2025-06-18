@@ -1,9 +1,28 @@
 import { Link } from 'react-router-dom'
 import Cards from '../components/Cards'
+import GetGitHubRepos from '../services/GetGitHubRepos'
+import { useEffect, useState } from 'react';
+import { TextFade } from '../lib/Animation';
+import Transition from '../lib/Transition';
 
 function Home() {
+    const [repos, setRepos] = useState([]);
+
+    useEffect(() => {
+        async function fetchRepos() {
+            try {
+                const data = await GetGitHubRepos('duisternis');
+                setRepos(data);
+            } catch (error) {
+                console.error('Error fetching repositories:', error);
+            }
+        }
+
+        fetchRepos();
+    }, []);
+    
     return (
-        <>
+        <div>
             <div className="px-10 home-intro">
                 <h1>Varnan Matela <span className="font-times italic mx-5">/ʋɐɾnɐnɐ/</span></h1>
 
@@ -17,25 +36,24 @@ function Home() {
 
 
             <h1 className='px-10 font-newsreader italic mt-12 mb-4'>Showcase</h1>
-            <div className="remove-scrollbar px-10 flex gap-4 overflow-y-scroll">
-                <Cards title="IEEE" link="/IEEE">
+            <div className="px-10 flex overflow-x-auto lg:overflow-x-hidden">
+                <Cards title="IEEE" link="/IEEE" ext_left={true} ext_right={false}>
                     IEEE JUIT Student Branch is a <span className="font-newsreader italic">technical club</span> at JUIT doing innovative things and inventing new things.
+                </Cards>
+                <Cards title="Blogs" link="/blog" ext_left={false} ext_right={false}>
+                    Writing stuff down before I forget what I was doing. 
                 </Cards>
             </div>
 
-            <h1 className='px-10 font-newsreader italic mt-12 mb-4'>Automation</h1>
-            <div className="remove-scrollbar px-10 flex gap-4 overflow-y-scroll">
-                <Cards title="File-Management-System" link="https://github.com/Duisternis/File-Management-System">
-                    Performance focused FMS to reduce cluttering.
-                </Cards>
-                <Cards title="Physics-Experiment-Analysis-Tool" link="https://github.com/Duisternis/Physics-Experiment-Analysis-Tool">
-                    Automating graphs, and calculating results based on experimental data.
-                </Cards>
-                <Cards title="Timetable-Parser" link="https://nyxknot.gitbook.io/time-connect">
-                    Bad excel data refactoring with highly customizable filtering features.
-                </Cards>
+            <h1 className='px-10 font-newsreader italic mt-12 mb-4'>Recent GitHub Repos</h1>
+            <div className="px-10 flex overflow-x-auto lg:overflow-x-hidden">
+                {repos.map((repo, idx) => (
+                    <Cards key={repo.name} title={repo.name} link={repo.url} ext_left={idx === 0} ext_right={idx === repos.length-1}>
+                        {repo.description || 'No description provided'}
+                    </Cards>
+                ))}
             </div>
-            <Link to='https://github.com/duisternis' target="_blank" className='mt-7 flex flex-row-reverse font-newsreader italic'>more...</Link>
+            <Link to='https://github.com/duisternis' target="_blank" className='px-10 mt-7 flex flex-row-reverse font-newsreader italic'>more...</Link>
 
             <div className="px-10 home-outro mt-12">
                 <h1>Now</h1>
@@ -52,8 +70,8 @@ function Home() {
                     Reach me at <a className="font-newsreader italic underline underline-offset-4" href="mailto:me@varnanmatela.in">me@varnanmatela.in</a>.
                 </p>
             </div>
-        </>
+        </div>
     )
 }
 
-export default Home
+export default Transition(Home);

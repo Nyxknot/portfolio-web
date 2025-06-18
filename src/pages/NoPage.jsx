@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Transition from '../lib/Transition'
 
 function NoPage() {
     return (
@@ -14,4 +15,4 @@ function NoPage() {
     )
 }
 
-export default NoPage
+export default Transition(NoPage)
