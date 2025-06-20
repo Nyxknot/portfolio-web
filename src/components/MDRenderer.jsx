@@ -4,6 +4,9 @@ import { LiaReadme } from "react-icons/lia";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { srcery as customStyle } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import VeryCoolCard from './VeryCoolCard';
+import remarkMath from "remark-math"
+import rehypeKatex from "rehype-katex"
+import "katex/dist/katex.min.css"
 
 const MDRenderer = ({ meta, content }) => {
 
@@ -11,9 +14,9 @@ const MDRenderer = ({ meta, content }) => {
   const betterDate = new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(date);
 
   return (
-    <div>
+    <>
       <div className='mb-14'>
-        <div className='flex justify-between items-center w-full mb-8 p-1'>
+        <div className='flex flex-col sm:flex-row justify-between sm:items-center w-full mb-8 p-1'>
           <p className="text-gray-500 mb-2">{betterDate}</p>
           <p className="text-gray-500 mb-2 hover:underline underline-offset-4">
             <a href={`https://${meta.website}`} target="_blank">{meta.website}</a>
@@ -31,7 +34,8 @@ const MDRenderer = ({ meta, content }) => {
       <div className='prose-container'>
         <Markdown
           children={content}
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeKatex]}
           components={{
             code(props) {
               const {children, className, node, ...rest} = props
@@ -57,7 +61,7 @@ const MDRenderer = ({ meta, content }) => {
           }}
         />
       </div>
-    </div>
+    </>
   );
 };
 

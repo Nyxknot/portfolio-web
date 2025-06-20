@@ -11,9 +11,9 @@ I was going to put a random computer-generated Lorem Ipsum text as my first blog
 
 # Who was the creator?
 
-Lorem Ipsum goes back to 1^st^-Century BC, which, according to Wikipedia, is a text derived from a corrupted version of "De finibus bonorum et malorum" (a Socratic dialogue written by the Roman orator Cicero). The words are altered, added, and removed to make it nonsensical. Lorem Ipsum itself is derived from *Dolorem Ipsum,* meaning *pain itself.*
+Lorem Ipsum goes back to 1$^{st}$-Century BC, which, according to Wikipedia, is a text derived from a corrupted version of "De finibus bonorum et malorum" (a Socratic dialogue written by the Roman orator Cicero). The words are altered, added, and removed to make it nonsensical. Lorem Ipsum itself is derived from *Dolorem Ipsum,* meaning *pain itself.*
 
-Later, in the 15^th^ Century, an unknown typesetter stumbled upon the scrambled parts of Lorem Ipsum. In 1960, the passage gained even more popularity with Letraset's dry-transfer sheets. What people in the earlier Printing Industry wanted was a text to showcase their typography without it being controversial, and the nonsensical text of Lorem Ipsum fits the description.
+Later, in the 15$^{th}$ Century, an unknown typesetter stumbled upon the scrambled parts of Lorem Ipsum. In 1960, the passage gained even more popularity with Letraset's dry-transfer sheets. What people in the earlier Printing Industry wanted was a text to showcase their typography without it being controversial, and the nonsensical text of Lorem Ipsum fits the description.
 
 Soon, this text made its way into the digital world via Aldus PageMaker (which later merged with Adobe).
 

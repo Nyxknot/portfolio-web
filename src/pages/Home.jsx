@@ -1,11 +1,45 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigationType } from 'react-router-dom'
 import Cards from '../components/Cards'
 import GetGitHubRepos from '../services/GetGitHubRepos'
 import { useEffect, useState } from 'react';
 import { TextFade } from '../lib/Animation';
 import Transition from '../lib/Transition';
+import Preloader from '../lib/Preloader';
 
 function Home() {
+ 
+    
+    const navType = useNavigationType();
+
+    const [showPreloader, setShowPreloader] = useState(!window.__hasNavigated__);
+
+    useEffect(() => {
+        if (window.__hasNavigated__) {
+        console.log("✅ Internal navigation");
+        } else {
+        console.log("🔄 Page load / refresh");
+        }
+
+        window.__hasNavigated__ = true;
+    }, [location.pathname]);
+
+    return (
+        <>
+            { showPreloader ? (
+                <Preloader setShowPreloader={setShowPreloader}>
+                    <HomeContent />
+                </Preloader>
+            ) : (
+                <HomeContent />
+            )}
+        </>
+        
+    )
+}
+
+
+function HomeContent() {
+
     const [repos, setRepos] = useState([]);
 
     useEffect(() => {
@@ -22,7 +56,7 @@ function Home() {
     }, []);
     
     return (
-        <div>
+        <>
             <div className="px-10 home-intro">
                 <h1>Varnan Matela <span className="font-times italic mx-5">/ʋɐɾnɐnɐ/</span></h1>
 
@@ -70,7 +104,7 @@ function Home() {
                     Reach me at <a className="font-newsreader italic underline underline-offset-4" href="mailto:me@varnanmatela.in">me@varnanmatela.in</a>.
                 </p>
             </div>
-        </div>
+        </>
     )
 }
 
