@@ -9,10 +9,18 @@ import Blog from "./pages/Blog";
 import BlogPage from "./components/BlogPage";
 import { AnimatePresence } from "framer-motion";
 
+import ScrollSmootherSetup from "./lib/ScrollSmootherSetup";
+import Transition from "./lib/Transition";
+
+import ScrollToTop from "./lib/ScrollToTop";
+
 function App() {
     return (
         <BrowserRouter>
-            <AnimatedRoutes />
+            <ScrollToTop />
+            <ScrollSmootherSetup>
+                <AnimatedRoutes />
+            </ScrollSmootherSetup>
         </BrowserRouter>
     );
 }
@@ -22,7 +30,8 @@ function AnimatedRoutes() {
 
     return (
         <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
+            <Transition key={location.pathname} />
+            <Routes location={location} key={location.pathname+"_routes"}>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="blog" element={<Blog />} />

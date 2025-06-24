@@ -15,4 +15,4 @@ function NoPage() {
     )
 }
 
-export default Transition(NoPage)
+export default NoPage;

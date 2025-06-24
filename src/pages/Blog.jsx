@@ -45,4 +45,4 @@ function Blog() {
     );
 }
 
-export default Transition(Blog);
+export default Blog;

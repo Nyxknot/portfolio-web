@@ -4,9 +4,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(useGSAP); 
-
-function Preloader({ children, setShowPreloader }) {
+function Preloader({ children, setStartAnimation }) {
 
     const container = useRef();
 
@@ -124,16 +122,16 @@ function Preloader({ children, setShowPreloader }) {
                 ease: "power1.inOut"
             })
 
-            gsap.from(".content-container > *", {
+            gsap.from(".content-container", {
                 delay: 7.5,
                 y: 100
             })
             
-            gsap.to(".content-container > *", {
+            gsap.to(".content-container", {
                 delay: 7.75,
                 y: 0,
-                stagger: {
-                    amount: 0.1,
+                onComplete: () => {
+                    setStartAnimation(false);
                 }
             })
 

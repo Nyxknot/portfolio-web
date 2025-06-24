@@ -1,32 +1,40 @@
-import { Link, useNavigationType } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Cards from '../components/Cards'
 import GetGitHubRepos from '../services/GetGitHubRepos'
 import { useEffect, useState } from 'react';
-import { TextFade } from '../lib/Animation';
 import Transition from '../lib/Transition';
 import Preloader from '../lib/Preloader';
 
 function Home() {
- 
-    
-    const navType = useNavigationType();
-
-    const [showPreloader, setShowPreloader] = useState(!window.__hasNavigated__);
+    const showPreloader = !window.__hasNavigated__;
+    const [startAnimation, setStartAnimation] = useState(true && showPreloader);
 
     useEffect(() => {
         if (window.__hasNavigated__) {
-        console.log("✅ Internal navigation");
+            console.log("✅ Internal navigation");
         } else {
-        console.log("🔄 Page load / refresh");
+            console.log("🔄 Page load / refresh");
         }
 
         window.__hasNavigated__ = true;
     }, [location.pathname]);
 
+    useEffect(() => {
+        if (startAnimation) {
+            document.body.classList.add("no-scroll");
+            document.getElementById('transition-wrapper').classList.add("no-opacity");
+            console.log("locked");
+        } else {
+            document.body.classList.remove("no-scroll");
+            document.getElementById('transition-wrapper').classList.remove("no-opacity");
+            console.log("unlocked");
+        }
+    }, [startAnimation]);
+
     return (
         <>
             { showPreloader ? (
-                <Preloader setShowPreloader={setShowPreloader}>
+                <Preloader setStartAnimation={setStartAnimation}>
                     <HomeContent />
                 </Preloader>
             ) : (
@@ -108,4 +116,4 @@ function HomeContent() {
     )
 }
 
-export default Transition(Home);
+export default Home;

@@ -140,3 +140,7 @@ body {
     font-style: italic;
     font-family: 'Newsreader', serif;
 }
+
+.no-opacity {
+    opacity: 0 !important;
+}

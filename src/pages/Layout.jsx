@@ -54,7 +54,7 @@ function Layout() {
                     )}
                 </div>
 
-                <div className="col-span-3">
+                <div className="col-span-3" >
                     <Outlet />
                 </div>
 

@@ -52,4 +52,4 @@ const BlogPage = () => {
   );
 };
 
-export default Transition(BlogPage);
+export default BlogPage;
